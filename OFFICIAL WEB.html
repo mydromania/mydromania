@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyD Romania Roleplay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Tema: ChatGPT-like dark gray */
+        :root{
+            --bg: #111111;       /* pagină */
+            --card: #2c2c2c;     /* carduri/coloane */
+            --muted: #a1a1aa;    /* texte secundare */
+            --text: #d1d5db;     /* text principal */
+            --btn: #565869;      /* butoane */
+            --btn-hover: #67697a;/* hover butoane */
+            --border: #929292;   /* borduri */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+        .text-glow {
+            /* păstrăm o ușoară strălucire neutră */
+            text-shadow: 0 0 6px rgba(255,255,255,0.02);
+        }
+        .main-section { display: none; }
+        .active-section { display: block; }
+        .nav-link.active { color: var(--text); border-bottom: 2px solid transparent; }
+        .product-card { transition: transform 0.25s ease, box-shadow 0.25s ease; background-color: var(--card); color: var(--text); }
+        .product-card:hover { transform: translateY(-6px); box-shadow: 0 10px 18px rgba(0,0,0,0.6); }
+        .btn-primary { background-color: var(--btn); color: #fff; }
+        .btn-primary:hover { background-color: var(--btn-hover); }
+        .border-muted { border-color: var(--border); }
+        header, footer { background-color: var(--card); }
+        .badge-popular { background-color: #4f4f5a; color: var(--text); }
+        /* small responsive tweaks */
+        @media (min-width: 768px){ .container{ max-width: 1100px; } }
+    </style>
+</head>
+<body>
+
+    <header class="shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#acasa" class="text-3xl font-black uppercase text-gray-100 text-glow" onclick="showSection('acasa')">
+                MYD <span class="text-gray-200">ROMANIA</span>
+            </a>
+            <nav>
+                <ul class="flex space-x-4 text-lg font-semibold">
+                    <li><a href="#acasa" class="nav-link px-3 py-2 text-gray-400 hover:text-gray-200 transition-colors active" onclick="showSection('acasa')">Acasă</a></li>
+                    <li><a href="#regulament" class="nav-link px-3 py-2 text-gray-400 hover:text-gray-200 transition-colors" onclick="showSection('regulament')">Regulament</a></li>
+                    <li><a href="#cumpara" class="nav-link px-3 py-2 text-gray-400 hover:text-gray-200 transition-colors" onclick="showSection('cumpara')">Magazin</a></li>
+                    <li><a href="#contact" class="nav-link px-3 py-2 text-gray-400 hover:text-gray-200 transition-colors" onclick="showSection('contact')">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-16">
+
+        <!-- Home Section -->
+        <section id="acasa" class="main-section active-section">
+            <div class="bg-[var(--card)] p-8 rounded-lg shadow-xl border border-muted text-center flex flex-col items-center">
+                <img src="https://r2.fivemanage.com/aCZ5ny90ePsV6peuZ4pX4/be1ee24c-8ac0-4569-b717-392c1a544194-removebg-preview(1).png" alt="MyD Logo" class="w-48 h-48 mb-6">
+                <h1 class="text-4xl md:text-5xl font-black uppercase text-gray-100 text-glow tracking-wider mb-4">
+                    MYD <span class="text-gray-200">ROMANIA</span>
+                </h1>
+                <p class="text-xl md:text-2xl font-bold text-gray-200 mb-8">
+                    Vă mulțumim pentru contribuția la dezvoltarea Comunității MYD Romania!
+                </p>
+
+                <hr class="w-full border-t border-muted my-8">
+
+                <!-- Important Information Section -->
+                <div class="text-left w-full">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center text-gray-100">
+                        <i class="fas fa-info-circle mr-2 text-gray-200"></i>
+                        INFORMAȚII IMPORTANTE
+                    </h2>
+
+                    <!-- MYD COINS -->
+                    <div class="bg-[var(--card)] p-4 rounded-lg mb-6 border border-muted">
+                        <h3 class="text-xl font-bold text-gray-200 mb-2">
+                            <i class="fas fa-coins mr-2"></i>
+                            MYD COINS
+                        </h3>
+                        <p class="text-gray-300 mb-2">
+                            Această categorie este destinată jucătorilor care doresc <strong>anumite beneficii</strong> pe server-ul de FiveM.
+                        </p>
+                        <!--p class="text-gray-300">
+                            Cum afli mai multe? Apasă butonul <strong>"Informații"</strong> de lângă <strong>"ADAUGA ÎN COS"</strong> la fiecare pachet sau consultă detaliile disponibile în categoria <strong>"MAGAZIN"</strong> din partea de sus a paginii.
+                        </p-->
+                    </div>
+
+                    <!-- Sancțiuni -->
+                    <div class="bg-[var(--card)] p-4 rounded-lg mb-6 border border-muted">
+                        <h3 class="text-xl font-bold text-gray-200 mb-2">
+                            <i class="fas fa-gavel mr-2"></i>
+                            SANCȚIUNI
+                        </h3>
+                        <p class="text-gray-300 mb-2">
+                            Această categorie este destinată celor care dețin o sancțiune de <strong>Ban Permanent</strong> sau <strong>Provizoriu</strong> cu drept de plată.
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li><strong>UNBAN PERMANENT</strong></li>
+                            <li><strong>UNBAN PROVIZORIU</strong></li>
+                            <li><strong>UNBAN DISCORD</strong></li>
+                            <li>Și mai multe detalii găsești și în categoria <strong>"MAGAZIN"</strong>.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Gift Card -->
+                    <!--div class="bg-[var(--card)] p-4 rounded-lg mb-6 border border-muted">
+                        <h3 class="text-xl font-bold text-gray-200 mb-2">
+                            <i class="fas fa-gift mr-2"></i>
+                            GIFT CARD
+                        </h3>
+                        <p class="text-gray-300">
+                            Surprinde o persoană dragă sau îmbunătățește-ți experiența pe serverul <strong>MyD</strong> cu un <strong>Gift Card!</strong>
+                        </p>
+                        <p class="text-gray-300">Rapid, simplu și perfect pentru cadouri!</p>
+                    </div-->
+
+                    <!-- Warning -->
+                    <div class="bg-[#3b2b2b] bg-opacity-20 p-4 rounded-lg border border-[#5a2b2b]">
+                        <h2 class="text-2xl font-bold text-[#f87171] mb-2 flex items-center">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            ATENȚIE!
+                        </h2>
+                        <ul class="list-disc list-inside text-[#fca5a5] space-y-2">
+                            <li>Respectă regulamentul serverului de FiveM!</li>
+                            <li>Dacă primești sancțiunea de <strong>BAN PERMANENT</strong> fără drept de plată, nu vei mai putea beneficia de pachetele achiziționate.</li>
+                            <li>Te încurajăm să consulți <strong>Termenii și Condițiile</strong> înainte de a achiziționa orice pachet pentru a înțelege regulamentul comunității și drepturile tale.</li>
+                            <li>Fii responsabil și bucură-te de experiența unică pe serverul nostru <strong>MyD!</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Shop Section -->
+        <section id="cumpara" class="main-section text-center mb-16">
+            <h2 class="text-4xl font-black uppercase text-gray-100 text-glow tracking-wider mb-8">Alege Categoria</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="product-card p-8 rounded-lg shadow-xl border border-muted cursor-pointer" onclick="showSection('cumpara-coins')">
+                <h3 class="text-2xl font-bold text-gray-200 mb-2">Cumpără Coins</h3>
+                <p class="text-gray-400">Cumpără Coins pentru a debloca avantaje in-game.</p>
+                <div class="mt-4 flex justify-center">
+                    <img src="https://r2.fivemanage.com/aCZ5ny90ePsV6peuZ4pX4/pulamea.png" alt="Coins" class="w-32 h-32">
+                </div>
+            </div>
+            <div class="product-card p-8 rounded-lg shadow-xl border border-muted cursor-pointer" onclick="showSection('cumpara-mafie')">
+                <h3 class="text-2xl font-bold text-gray-200 mb-2">Cumpără Mafie</h3>
+                <p class="text-gray-400">Intră în lumea subterană a mafiei și domină serverul.</p>
+                <div class="mt-4 flex justify-center">
+                    <img src="https://r2.fivemanage.com/aCZ5ny90ePsV6peuZ4pX4/pngtree-mafia-gangster-logo-design-png-image_12820003.png" alt="Mafie" class="w-32 h-32">
+                </div>
+            </div>
+            <div class="product-card p-8 rounded-lg shadow-xl border border-muted cursor-pointer" onclick="showSection('cumpara-staff')">
+                <h3 class="text-2xl font-bold text-gray-200 mb-2">Cumpără Staff</h3>
+                <p class="text-gray-400">Ajută la menținerea ordinii și primește recompense unice.</p>
+                <div class="mt-4 flex justify-center">
+                    <img src="https://r2.fivemanage.com/aCZ5ny90ePsV6peuZ4pX4/staff-member-sticker-removebg-preview.png" alt="Staff" class="w-32 h-32">
+                </div>
+            </div>
+            <div class="product-card p-8 rounded-lg shadow-xl border border-muted cursor-pointer" onclick="showSection('cumpara-id')">
+                <h3 class="text-2xl font-bold text-gray-200 mb-2">Cumpără ID</h3>
+                <p class="text-gray-400">Obține un ID unic și personalizat pe server.</p>
+                <div class="mt-4 flex justify-center">
+                    <img src="https://r2.fivemanage.com/aCZ5ny90ePsV6peuZ4pX4/law-firm-attorney-id-cards.png" alt="ID" class="w-32 h-32">
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Coins Section -->
+        <section id="cumpara-coins" class="main-section">
+            <div class="container mx-auto px-4 py-8 md:py-16">
+                <header class="text-center mb-16">
+                    <h1 class="text-4xl md:text-6xl font-black uppercase text-gray-100 text-glow tracking-wider">Ofertă Exclusivă de Coins</h1>
+                    <p class="text-gray-300 text-lg md:text-xl mt-4 max-w-2xl mx-auto">E timpul să-ți propulsezi experiența de gaming la un nou nivel!</p>
+                </header>
+
+                <section id="benefits" class="mb-20">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="bg-[var(--card)] p-6 rounded-lg text-center border border-muted">
+                            <div class="text-4xl mb-4">👑</div>
+                            <h3 class="text-xl font-bold mb-2 text-gray-200">Status VIP</h3>
+                            <p class="text-gray-400">Fii cel mai tare și bucură-te de beneficii exclusive!</p>
+                        </div>
+                        <div class="bg-[var(--card)] p-6 rounded-lg text-center border border-muted">
+                            <div class="text-4xl mb-4">💸</div>
+                            <h3 class="text-xl font-bold mb-2 text-gray-200">Bani In-Game Nelimitat</h3>
+                            <p class="text-gray-400">Achiziționează orice item dorești, fără nicio grijă!</p>
+                        </div>
+                        <div class="bg-[var(--card)] p-6 rounded-lg text-center border border-muted">
+                            <div class="text-4xl mb-4">🚗</div>
+                            <h3 class="text-xl font-bold mb-2 text-gray-200">Mașini Unice & Exclusive</h3>
+                            <p class="text-gray-400">Condu cele mai rare mașini și fii invidia tuturor!</p>
+                        </div>
+                        <div class="bg-[var(--card)] p-6 rounded-lg text-center border border-muted">
+                            <div class="text-4xl mb-4">🎁</div>
+                            <h3 class="text-xl font-bold mb-2 text-gray-200">Multe Alte Surprize</h3>
+                            <p class="text-gray-400">Descoperă avantaje ascunse și recompense uimitoare!</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="pricing" class="mb-20">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-gray-100">Prețuri Care Te Fac Să Zâmbești!</h2>
+                        <p class="text-gray-400 mt-2">De la buget redus la putere maximă, avem pachetul perfect pentru tine!</p>
+                    </div>
+                    <div id="pricing-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-center">
+                    </div>
+                </section>
+
+                <section id="value-analysis" class="mb-20">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-gray-100">Analiza Valorii: Primești Mai Mult Decât Plătești</h2>
+                        <p class="text-gray-400 mt-2">Cu cât pachetul este mai mare, cu atât primești mai multe coins bonus. Graficul de mai jos arată exact câte monede suplimentare primești față de pachetul de bază.</p>
+                    </div>
+                    <div class="bg-[var(--card)] p-4 md:p-8 rounded-lg border border-muted">
+                        <div class="chart-container relative w-full h-96 max-h-[400px] md:h-[450px] md:max-h-[450px] mx-auto max-w-4xl">
+                            <canvas id="bonusCoinsChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="how-to-buy" class="text-center bg-[var(--card)] border border-muted rounded-lg p-8 md:p-12">
+                    <h2 class="text-3xl font-bold text-gray-100 text-glow mb-4">Cum Cumperi? Este Super Simplu!</h2>
+                    <p class="text-gray-300 text-lg max-w-3xl mx-auto mb-6">Toate achizițiile se fac direct cu unicul și inegalabilul administrator. Asigură-te că vorbești doar cu el pentru a evita orice neînțelegere.</p>
+                    <a href="https://revolut.me/liviulun" target="_blank" class="inline-block btn-primary text-2xl font-bold px-8 py-4 rounded-md shadow-lg hover:opacity-95 transition-colors">Plateste</a>
+
+                    <div class="mt-8 border-t-2 border-[#862b2b] pt-6 max-w-2xl mx-auto">
+                        <h3 class="text-2xl font-bold text-[#f87171] mb-2">🚨 ATENȚIE! 🚨</h3>
+                        <p class="text-gray-300">Orice plată efectuată către altcineva <strong class="text-[#fb7185]">NU</strong> va fi rambursată de către Fondator. Siguranța ta este prioritatea noastră!</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- New Mafia Section -->
+        <section id="cumpara-mafie" class="main-section">
+            <div class="container mx-auto px-4 py-8 md:py-16">
+                <header class="text-center mb-16">
+                    <h1 class="text-4xl md:text-6xl font-black uppercase text-gray-100 text-glow tracking-wider">CUMPĂRĂ MAFIA</h1>
+                    <p class="text-gray-300 text-lg md:text-xl mt-4 max-w-2xl mx-auto">E timpul să-ți scrii propria legendă. Intră în lumea ascunsă a puterii, unde fiecare decizie contează. De la controlul străzilor la dominarea economiei, imperiul tău așteaptă să fie construit.</p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">Mafie Oficială</h3>
+                        <p class="text-gray-400 flex-grow">Creează o facțiune recunoscută și domină complet harta. Include toate beneficiile de bază și acces la evenimente speciale.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">
+                            200€
+                        </div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">Mafie Ne-oficială</h3>
+                        <p class="text-gray-400 flex-grow">Începe-ți ascensiunea în umbră. O facțiune mică, perfectă pentru a te familiariza cu mecanicile de roleplay ilegale.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">
+                            50€
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center bg-[var(--card)] border border-muted rounded-lg p-8 md:p-12 mt-12">
+                    <h2 class="text-3xl font-bold text-[#f87171] mb-4">🚨 ATENȚIE: Taxă de Mentenanță 🚨</h2>
+                    <p class="text-gray-300 text-lg max-w-3xl mx-auto mb-6">După ce este creată, mafia va necesita o taxă lunară de <strong>10€</strong> pentru întreținere. Această taxă este esențială pentru a menține stabilitatea și funcționalitatea facțiunii.</p>
+                    <div class="mt-8 border-t-2 border-[#862b2b] pt-6 max-w-2xl mx-auto">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">Contact pentru Achiziții</h3>
+                        <p class="text-gray-300">Toate achizițiile se fac direct cu unicul și inegalabilul <strong>Owner</strong> al serverului. Vă rugăm să contactați doar utilizatorul de Discord de mai jos pentru a evita orice neînțelegere:</p>
+                        <a href="https://revolut.me/liviulun" target="_blank" class="inline-block btn-primary text-gray-900 text-2xl font-bold px-8 py-4 rounded-md shadow-lg mt-4 hover:opacity-95 transition-colors">Plateste</a>
+                    </div>
+                    <div class="mt-8">
+                        <p class="text-gray-300">Orice plată efectuată către altcineva <strong class="text-[#fb7185]">NU</strong> va fi despăgubită de către Fondator. Siguranța dumneavoastră este prioritatea noastră!</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- New Staff Section -->
+        <section id="cumpara-staff" class="main-section">
+            <div class="container mx-auto px-4 py-8 md:py-16">
+                <header class="text-center mb-16">
+                    <h1 class="text-4xl md:text-6xl font-black uppercase text-gray-100 text-glow tracking-wider">DEVINO MEMBRU STAFF</h1>
+                    <p class="text-gray-300 text-lg md:text-xl mt-4 max-w-2xl mx-auto">Vrei să contribui la dezvoltarea comunității noastre? Descoperă gradele disponibile și implică-te activ în creșterea MYD Romania! Îmbunătățește-ți rolul în comunitate și ajută la menținerea unui mediu de joc excelent.</p>
+                </header>
+
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-100">Grade Staff Disponibile</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12 justify-center">
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">HELPER</h3>
+                        <p class="text-gray-400 flex-grow">Asistă jucătorii noi și ajută la menținerea ordinii.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">10€</div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">MODERATOR</h3>
+                        <p class="text-gray-400 flex-grow">Supraveghează activitatea pe server și soluționează problemele.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">20€</div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">ADMINISTRATOR</h3>
+                        <p class="text-gray-400 flex-grow">Asigură corectitudinea jocului și implementează decizii administrative.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">30€</div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">HEAD OF STAFF</h3>
+                        <p class="text-gray-400 flex-grow">Coordonează echipa de staff și raportează direct fondatorului.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">40€</div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">CO-FONDATOR</h3>
+                        <p class="text-gray-400 flex-grow">Participă la deciziile majore și la planificarea viitoare a serverului.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">70€</div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">FONDATOR</h3>
+                        <p class="text-gray-400 flex-grow">Nivelul suprem de control, ideal pentru parteneri de încredere.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">100€</div>
+                    </div>
+                </div>
+
+                <div class="text-center bg-[var(--card)] border border-muted rounded-lg p-8 md:p-12 mt-12">
+                    <h2 class="text-3xl font-bold text-gray-200 mb-4">Contact pentru Achiziții</h2>
+                    <p class="text-gray-300 text-lg max-w-3xl mx-auto mb-6">Orice achiziție se discută direct cu Fondatorul comunității. Vă rugăm să-l contactați pe Discord la <strong class="text-gray-100">@BENZINA®</strong> pentru a evita orice neînțelegere.</p>
+                    <a href="https://revolut.me/liviulun" target="_blank" class="inline-block btn-primary text-2xl font-bold px-8 py-4 rounded-md shadow-lg mt-4 hover:opacity-95 transition-colors">Plateste</a>
+                    <div class="mt-8 border-t-2 border-[#862b2b] pt-6 max-w-2xl mx-auto">
+                        <h3 class="text-2xl font-bold text-[#f87171] mb-2">🚨 ATENȚIE! 🚨</h3>
+                        <p class="text-gray-300">Orice plată efectuată către altcineva <strong class="text-[#fb7185]">NU</strong> va fi despăgubită de către Fondator! Siguranța dumneavoastră este prioritatea noastră!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Updated ID Section -->
+        <section id="cumpara-id" class="main-section">
+            <div class="container mx-auto px-4 py-8 md:py-16">
+                <header class="text-center mb-16">
+                    <h1 class="text-4xl md:text-6xl font-black uppercase text-gray-100 text-glow tracking-wider">ALEGE-ȚI ID-UL UNIC</h1>
+                    <p class="text-gray-300 text-lg md:text-xl mt-4 max-w-2xl mx-auto">Multe persoane își doresc un ID mai mic. Am decis să oferim acest beneficiu pentru a-ți personaliza experiența pe server!</p>
+                </header>
+                
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-100">Prețuri ID-uri</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center mb-12">
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">ID 3 - 100</h3>
+                        <p class="text-gray-400 flex-grow">Cel mai râvnit ID, pentru un status suprem.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">40€</div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">ID 101 - 200</h3>
+                        <p class="text-gray-400 flex-grow">Un ID mic, ușor de reținut și profesional.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">30€</div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">ID 201 - 300</h3>
+                        <p class="text-gray-400 flex-grow">O alegere excelentă pentru a te diferenția.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">25€</div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">ID 301 - 400</h3>
+                        <p class="text-gray-400 flex-grow">Un ID scurt și memorabil.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">20€</div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">ID 401 - 500</h3>
+                        <p class="text-gray-400 flex-grow">Ideal pentru a obține un ID personalizat.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">15€</div>
+                    </div>
+                    <div class="product-card p-6 rounded-lg shadow-xl border border-muted flex flex-col text-center">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">ID 501 - 600</h3>
+                        <p class="text-gray-400 flex-grow">O opțiune accesibilă pentru a-ți asigura un ID special.</p>
+                        <div class="bg-[var(--card)] text-white text-2xl font-black py-2 px-4 rounded-md mt-4">10€</div>
+                    </div>
+                </div>
+
+                <div class="text-center bg-[var(--card)] border border-muted rounded-lg p-8 md:p-12 mt-12">
+                    <h2 class="text-3xl font-bold text-gray-200 mb-4">REGULI IMPORTANTE</h2>
+                    <ul class="text-left text-lg text-gray-300 max-w-2xl mx-auto list-disc list-inside">
+                        <li>ID-urile jucătorilor activi nu pot fi vândute, pentru a evita certurile și supărările.</li>
+                        <li>Se vând doar ID-uri ale conturilor banate sau fără activitate.</li>
+                        <li>În cazul în care vei fi banat după achiziție, banii nu vor fi restituiți.</li>
+                        <li>Orice achiziție se face doar cu Fondatorul comunității.</li>
+                        <li>Orice plată efectuată către altcineva nu va fi despăgubită de către Fondator. Siguranța ta este prioritatea noastră!</li>
+                    </ul>
+                    <div class="mt-8 border-t-2 border-[#862b2b] pt-6 max-w-2xl mx-auto">
+                        <h3 class="text-2xl font-bold text-gray-200 mb-2">Contact pentru Achiziții</h3>
+                        <p class="text-gray-300">Pentru a finaliza achiziția, te rugăm să-l contactezi pe Discord pe <strong class="text-gray-100">@BENZINA®</strong>.</p>
+                        <a href="https://revolut.me/liviulun" target="_blank" class="inline-block btn-primary text-2xl font-bold px-8 py-4 rounded-md shadow-lg mt-4 hover:opacity-95 transition-colors">Plateste</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="regulament" class="main-section">
+  <div class="container mx-auto px-4 py-8 md:py-16">
+    <h1 class="text-4xl md:text-5xl font-black uppercase text-gray-100 text-glow tracking-wider mb-8 text-center">
+      Regulament
+    </h1>
+
+    <!-- Butoane navigare -->
+    <div class="flex justify-center space-x-4 mb-8">
+      <button class="btn-primary px-6 py-2 rounded-lg" onclick="showRegulament('roleplay')">Roleplay</button>
+      <button class="btn-primary px-6 py-2 rounded-lg" onclick="showRegulament('server')">Server</button>
+      <button class="btn-primary px-6 py-2 rounded-lg" onclick="showRegulament('factiuni')">Facțiuni</button>
+    </div>
+        <!-- Container card background -->
+    <div class="bg-[var(--card)]">
+ 
+
+        <div id="regulament-roleplay" class="regulament-section bg-[var(--card-bg)] p-8 rounded-xl shadow-2xl border border-[var(--border-color)]">
+            <h1 class="text-3xl sm:text-4xl font-extrabold mb-6 text-[var(--text-heading)] text-center">
+                Regulament Roleplay
+            </h1>
+
+            <p class="text-lg sm:text-xl text-center mb-10 text-[var(--text-body)]">
+                Aceste reguli sunt esențiale pentru o experiență de joc corectă și imersivă.
+            </p>
+
+            <ul class="list-none space-y-6 text-xl text-[var(--text-body)]">
+<li class="flex items-start bg-green-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-green-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">Regula generală:</strong> Roleplay-ul (RP) este <strong>obligatoriu</strong> în toate situațiile de joc.
+    </span>
+</li>
+<li class="flex items-start bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">Abateri interzise:</strong> Este strict interzisă practicarea de <strong>Powergaming, Metagaming sau FailRP</strong>.
+    </span>
+</li>
+<li class="flex items-start bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">IC vs. OOC:</strong> Nu ai voie să folosești informații obținute în afara jocului (<strong>OOC</strong>) pentru a-ți câștiga avantaje în joc.
+    </span>
+</li>
+<li class="flex items-start bg-green-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-green-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">Fair-play:</strong> Respectă scenariile și situațiile de roleplay create de ceilalți jucători, pentru a menține fluiditatea acțiunii.
+    </span>
+</li>
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">Metagaming (MG):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Folosirea de informații din afara jocului (OOC) în scopuri din joc (IC).</li>
+        <li>Este interzisă coordonarea acțiunilor de joc prin Discord sau alte aplicații.</li>
+        <li><strong>Streamsniping-ul</strong> este interzis: folosirea informațiilor de pe un stream pentru a influența acțiunea din joc.</li>
+        <li>Partajarea de informații pe Discord care influențează direct deciziile dintr-un RP, chiar dacă participanții nu sunt pe server.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Metagaming-ul se sancționează cu ban 7 zile.
+    </span>
+</li>
+<li class="flex items-start mt-4 bg-orange-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-orange-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.353 2.53-1.353 3.295 0l4.606 8.169c.765 1.353-.264 3.033-1.648 3.033H4.3c-1.384 0-2.413-1.68-1.648-3.033L8.257 3.099zM10 5a1 1 0 011 1v3a1 1 0 11-2 0V6a1 1 0 011-1zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Mentiuni:</strong> Metagaming-ul făcut în formă agravantă va fi pedepsit direct cu ban 14 sau 30 zile.
+    </span>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Scărpinatul la ochi în mod abuziv/fără motiv va fi sancționat în continuare cu jail 120 minute + warn (asta dacă nu influențează în niciun mod RP-ul).
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">Random Deathmatch (RDM):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Uciderea altor jucători fără un motiv bine întemeiat în joc.</li>
+        <li>Este interzis să ataci sau să omori o persoană pe stradă, fără un motiv valid.</li>
+        <li>Nu ai voie să fugi de la un "traffic stop" pentru a atrage poliția într-o capcană.</li>
+        <li><strong>Excepție:</strong> Îți este permis să te aperi dacă poliția deschide focul asupra ta.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> RDM se sancționează cu jail 90 minute / 120 minute / 150 minute + warn la primele abateri, urmat de ban 3 zile pentru fiecare abatere ulterioară.
+    </span>
+</li>  
+<hr class="border-t-2 border-white/30 my-8">               
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">Vehicle Deathmatch (VDM):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Uciderea altor jucători prin lovirea cu mașina.</li>
+        <li><strong>VDM-ul este strict interzis</strong>, indiferent de situație.</li>
+        <li><strong>Excepție:</strong> Acroșarea accidentală este permisă doar cu dovadă video.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiuni:</strong> Jail <strong>90 / 120 / 150 minute</strong> + Warn.
+    </span>
+</li>  
+<hr class="border-t-2 border-white/30 my-8">          
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">No-Fear Roleplay (NF):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Să nu simulezi frica într-o situație periculoasă.</li>
+        <li>Refuzul de a coopera când ești amenințat cu o armă.</li>
+        <li>Să ataci cu pumnii o persoană înarmată.</li>
+        <li>Intervenția într-un conflict armat între grupuri.</li>
+        <li><strong>Excepție:</strong> Nu se consideră NF să scoți arma de foc dacă ești amenințat cu un cuțit.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> No-Fear-ul se sancționează cu jail 150 minute + warn, urmat de ban 3 zile pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">Revengekill (RK):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>A te întoarce să omori o persoană care te-a ucis în roleplay, după ce ai respawnat.</li>
+        <li>Este interzis să te răzbuni imediat după ce ai murit.</li>
+        <li><strong>Excepție:</strong> Te poți reîntoarce la o acțiune RP după 30 de minute de la respawn.</li>
+        <li>Această excepție nu se aplică în cazul jafurilor la bănci.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> RK se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn + jail 120 minute pentru fiecare abatere săvârșită în continuare. Exceptând jaf-ul (ban 3 zile).
+    </span>
+</li>
+
+<hr class="border-t-2 border-white/30 my-8">
+
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">Player-Kill (PK):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>A uita tot ce s-a întâmplat în roleplay-ul anterior după ce ai murit.</li>
+        <li>Când ești lichidat, uiți tot RP-ul anterior și trebuie să resetezi telefonul.</li>
+        <li>Este interzis să-ți amintești de persoane sau evenimente din perioada anterioară PK-ului.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Nerespectarea PK-ului va fi sancționată conform regulamentului.</strong>
+    </span>
+</li>
+
+<hr class="border-t-2 border-white/30 my-8">
+
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">Character-Kill (CK):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Atunci când caracterul tău moare definitiv. Trebuie să-ți creezi un personaj complet nou, cu altă identitate și aspect, și vei uita tot ce s-a întâmplat cu vechiul caracter.</li>
+        <li>Toate bunurile, orele de joc și level-ul caracterului se pierd.</li>
+        <li>Noul caracter nu poate avea nicio legătură cu cel vechi (nu poate fi rudă sau prieten).</li>
+        <li>Există două tipuri de CK: <strong>Minor</strong> (excludere din facțiune, dar păstrezi bunurile) și <strong>Major</strong> (pierzi tot, adesea pentru încălcări grave).</li>
+    </ul>
+</li>
+
+<hr class="border-t-2 border-white/30 my-8">
+
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">Olympic Swim (OS):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Olympic Swim îl întâlnim atunci când ești fugărit de către o persoană / poliție încercând să scapi înotând o perioadă lungă de timp.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Olympic swim se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn + jail 120 minute pentru fiecare abatere săvârșită în continuare.</strong>
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">ROB & KILL / KILL & ROB:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Reprezintă jefuirea unui jucător și după omorarea lui sau omorarea unui jucător și după jefuirea lui.</li>
+        <li>Exemple:
+            <ul class="list-disc list-inside mt-1 ml-4 space-y-1 text-gray-400">
+                <li>L-ai jefuit pe x și după aceea l-ai omorât / L-ai omorât pe x și după aceea l-ai jefuit.</li>
+                <li>După ce ai percheziționat o persoană și ai văzut că nu are nimic la el, l-ai omorât.</li>
+                <li>Dacă l-ai omorât, l-ai dus la spital și după l-ai jefuit. (kill & rob)</li>
+                <li>Dacă după ce ați fost jefuiți începi să ameninți, jignești, scoți telefonul sau folosești stația și acesta te omoară, nu se consideră rob & kill.</li>
+                <li>Găsești o persoană moartă cu care nu ai avut nicio interacțiune, o duci la spitalul de mafioți sau îi dai trusa și mai apoi o jefuiești.</li>
+            </ul>
+        </li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Rob & Kill se sancționează cu jail 90 minute / 120 minute / 150 minute + warn la primele abateri, urmat de ban 3 zile pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">ROLEPLAY SCARBOS:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Este interzis roleplay-ul scarbos în orice mod fără acordul ambelor persoane participante (ex: scuip pe cineva, vomit pe el/ea).</li>
+        <li>Un limbaj și un comportament indecent față de persoanele de sex feminin – doar cu acordul acestora se poate crea un RP scarbos/jigniri etc.</li>
+        <li>Un limbaj și un comportament indecent față de persoanele de sex feminin abuziv cu injurii grave, fără motiv, se sancționează cu ban 3 zile.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Roleplay-ul scarbos se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn + jail 120 minute pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">MIXING:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Mixingul reprezintă transmiterea unei informații IC pe chat-ul serverului (ex: scriu pe chat-ul serverului: „vând arme, vă aștept la CNN”).</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Mixingul se sancționează cu mute 120 minute.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">COP FEAR (CF):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>COP FEAR sau prescurtarea (CF) este o ramură din regula NO-FEAR și face referință la persoanele care nu au frică de polițiști.</li>
+        <li>Este strict interzis să luați la mișto, să jigniți sau să nu respectați ordinele abuziv, indiferent de situație.</li>
+        <li>Nu este permis să iei ostatic în secția de poliție sau în penitenciar.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> CF se sancționează cu jail 90 minute / 120 minute / 150 minute + warn la primele abateri, urmat de ban 3 zile pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">CAR RAM (CR):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Reprezintă momentul în care unul sau mai mulți jucători lovesc cu vehiculele alte vehicule, fără motiv sau fără a întreține un Roleplay.</li>
+        <li>Atunci când provoci un accident pentru a-ți crea avantaj.</li>
+        <li>Să faci accident pentru a jefui pe cineva sau pentru a scăpa de o urmărire.</li>
+        <li>Pitstop-ul cu mașini sport sau vehiculele care nu sunt dotate cu bullbar este interzis.</li>
+        <li>Pitstop-ul poate fi efectuat doar cu o mașină de tip SUV sau dotată cu bullbar (viteza maximă permisă: ±120 km/h).</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Car Ram se sancționează cu jail în funcție de gravitate și abateri: 90 minute / 120 minute / 150 minute + warn la primele abateri, urmat de ban 3 zile pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">ILEGALITATE ÎN ZONA PUBLICĂ</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Reprezintă momentul în care un jucător face o acțiune ilegală într-o zonă publică (ex: ameninți cu arma la CNN, furi o mașină în parcarea secției de poliție, etc.).</li>
+        <li>Când ameninți cu arma într-o zonă publică (CNN, SHOWROOM, BĂNCI, SECȚIE, SPITAL, GARAJ, MAGAZIN, CLUBURI, ZONĂ JOB LEGAL).</li>
+        <li>Atunci când te bați cu o persoană sau mai multe într-o zonă publică până îl bagi în comă (pumni, picioare) fără un motiv bine întemeiat.</li>
+        <li>Vânzarea de obiecte ilegale: arme, cuvinte cu subînțeles (ex: praf de zână, praf de copt, făină, praf minune, praf magic etc.), locații ilegale, componente pentru confecționarea armelor etc.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Ilegalitatea în zona publică se sancționează cu jail 90 minute / 120 minute / 150 minute + warn la primele abateri, urmat de ban 3 zile pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">CAR SURF (CS):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Car surf-ul este atunci când te urci pe o mașină și stai pe aceasta în timp ce se află în deplasare, chiar dacă ai făcut roleplay în prealabil că ești introdus sau că intri în portbagaj.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Car Surf se sancționează cu jail în funcție de gravitate și abateri: 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">PROVOKING:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Este interzis să provoci alte persoane, poliția sau o altă facțiune pentru a le da motiv să te urmărească sau să întrețină acțiuni roleplay cu tine doar pentru propriul tău amuzament.</li>
+        <li>Injuratul oamenilor fără motiv (ex: te duci la cineva și începi să-l injuri fără a avea niciun roleplay cu el).</li>
+        <li>Să cauți să te cerți cu oamenii fără motiv (ex: vezi o persoană la CNN și începi să cauți motiv de scandal fără a avea o acțiune roleplay pentru care a început cearta).</li>
+        <li>Vezi o persoană care vine la tine și încearcă să poarte o discuție, iar tu începi să o injuri și să o umilești fără niciun motiv.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Provoking-ul se sancționează cu jail în funcție de gravitate și abateri: 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn în funcție de gravitate.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">JAFFURI / RAPIRI:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Nu aveți voie să jefuiți în timpul zilei; puteți jefui doar între 20:00 - 08:00.</li>
+        <li>Excepție: pe insula Cayo se poate jefui între 19:00 - 10:00.</li>
+        <li>Suma maximă acceptată pentru un ostatic este de 50.000$.</li>
+        <li>Nu cereți arme, elicoptere de poliție, SMURD sau implicarea mafiei pentru răpiri.</li>
+        <li>Este interzis să jefuiți în zone publice / safezone sau la job-urile legale (ex: magazine, poliție, frizerie).</li>
+        <li>Nu puteți jefui jucătorii care fac job-uri legale decât în zonele rău famate sau dacă nu poartă uniformă de job legal.</li>
+        <li>Este interzis să faceți ilegalități cu mașina de la job-ul legal.</li>
+        <li>Nu jefuiți / omorâți aceeași persoană timp de 1 oră, cu excepția în care există un roleplay nou cu alte persoane implicate.</li>
+        <li>Nu jefuiți polițiștii sau medicii on-duty.</li>
+        <li>Este interzis să obligați alți jucători să scoată bani din bancă pentru a-i jefui ulterior.</li>
+        <li>Nu aveți voie să jefuiți în zona garajelor, dar puteți răpi în funcție de roleplay.</li>
+        <li>Nu jefuiți sau răpiți din case.</li>
+        <li>Nu ademenești și nu răpiți dintr-o zonă publică fără un motiv bine întemeiat sau fără RP adecvat.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Încălcarea regulamentului de jafuri și răpiri se sancționează cu jail 120 minute + warn.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">JEFUIT SUB 30 ORE:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Nu aveți voie să jefuiți persoanele care au mai puțin de 30 ore jucate pe caracter, decât dacă există un motiv bine întemeiat pentru a le răpi.</li>
+        <li>Persoanele sub 30 ore jucate pe caracter nu au voie să jefuiască sau să răpească.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Jefuitul sub 30 ore se sancționează cu jail 120 minute + warn / ban 7 zile / ban 30 zile.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">DERANJARE TICKET / MINCIUNI LA TICKET:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Atunci când există un ticket în desfășurare, trebuie să ascultați de adminul chemat și să nu mințiți la ticket.</li>
+        <li>Participantii trebuie să vorbească pe rând, pentru ca adminul să poată înțelege situația.</li>
+        <li>Adminii implicați într-un roleplay nu au voie să oprească acel roleplay sau să sancționeze participanții; trebuie să cheme un alt admin.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Deranjarea report-ului se sancționează cu jail 60 minute / 90 minute / 120 minute.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">DISCONNECT IN ROLEPLAY:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Dacă în timpul unui roleplay primiți timeout, trebuie să anunțați pe Discordul comunității și să reveniți în maxim 10 minute; altfel se sancționează cu ban 7 zile.</li>
+        <li>Sancțiunea de disconnect se acordă separat în cazul în care în același roleplay sunt și alte greșeli (ex: powergaming + deschidere OOC + disconnect).</li>
+        <li>Dacă mesajul roșu afișează “Disconnect”, persoana este sancționată direct cu ban 7 zile.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Disconnectul în roleplay se sancționează cu ban 7 zile / 10 zile / 13 zile la primele abateri, urmat de ban 30 zile pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">COP BAIT (CB):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Este atunci când încerci să faci un echipaj de poliție să te urmărească cu sau fără motiv.</li>
+        <li>Exemple:
+            <ul class="list-disc list-inside ml-4 text-gray-300">
+                <li>Fac drifturi lângă un polițist doar ca să fiu urmărit pentru că m-am plictisit.</li>
+                <li>Claxonez excesiv doar pentru a atrage atenția polițiștilor.</li>
+                <li>Trec cu viteză și claxonez pe lângă o mașină de poliție pentru că vreau urmărire.</li>
+            </ul>
+        </li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Cop baiting-ul se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn + jail 120 minute pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">FAKE MAFIA:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Nu aveți voie să umblați în grupuri mai mari de 10 persoane pentru a face ilegalități, se consideră "Fake mafia".</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Fake mafia se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn + jail 120 minute pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">ALIANTA CU CIVILII:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Dacă sunteți mafioți și participați voluntar la acțiunile ilegale împreună cu civilii, se consideră “Alianta cu civilii”.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Alianta cu civilii se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn + jail 120 minute pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">CONDUS NON-RP:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>⬜ <strong>Drumuri albe/asfaltate:</strong> pot fi parcurse cu absolut orice vehicul disponibil pe server.</li>
+        <li>🟫 <strong>Drumuri maro/neasfaltate:</strong> pot fi parcurse doar cu SUV-uri (4x4), tiruri sau dube, cu viteză maximă de 120 km/h.</li>
+        <li>⬛ <strong>Căi ferate:</strong> pot fi parcurse doar cu vehicule de tip EXTREME OFFROAD, cu viteză maximă de 80 km/h.</li>
+        <li>🏞️ <strong>Alte locații (dealuri/munti/drumuri nemarcate):</strong> pot fi parcurse doar cu vehicule de tip EXTREME OFFROAD, cu viteză maximă de 130 km/h.</li>
+        <li>Lista cu tipurile de vehicule o găsiți <a href="#" class="text-blue-400 underline">AICI</a>.</li>
+        <li>Condusul pe contrasens fără un motiv bine întemeiat (ex: urmărit de poliție, urmărit de jefuitori, jaful sau scăparea mașinii de sub control) se sancționează cu condus non-RP.</li>
+        <li>Condusul pe contrasens fără motiv și producerea unui accident fără rolarea acestuia (PG) se sancționează cu ban 3 zile.</li>
+        <li>Poliția poate urmări pe dealuri doar cu mașina OFF-ROAD din cadrul poliției.</li>
+        <li>Este strict interzis să circulați cu tirul prin oraș în zonele aglomerate (ex: CNN, Fleeca central, showroom, etc.).</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Abaterile de la regulile de condus non-RP se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn + jail 120 minute pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">INSELATORII:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Este strict interzis să înșelați persoane, atât IC, cât și OOC.</li>
+        <li>Împrumuturile de bunuri se fac pe propria răspundere și nu se sancționează (cazuri exagerate pot fi sancționate în funcție de gravitate).</li>
+        <li>Complicele la înșelătorii se sancționează cu jail 120 minute + warn.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Înșelătoria se sancționează cu ban 7 zile / 14 zile / 30 zile / permanent, în funcție de gravitate. Toate bunurile vor fi restituite.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">NINJA JACK (NJ):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Ninja Jack-ul reprezintă momentul când furi o mașină de față cu proprietarul autovehiculului (ex: proprietarul e lângă mașină și tu îi furi vehiculul).</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Ninja Jack-ul se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn + jail 120 minute pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">REFUZ RP:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Refuz Roleplay apare atunci când refuzi să răspunzi altor jucători într-o acțiune roleplay (ex: poliția te amprentează și tu nu oferi buletinul).</li>
+        <li>Dacă ești leșinat și primești timeout în timpul unei truse, la revenirea pe server nu ai voie să apeși space timp de 3 minute.</li>
+        <li>Exemplu: dacă mai sunt 11 minute și 20 secunde, medicul îți dă trusa, primești crash, trusa se anulează. La intrarea pe server timpul scade la 10:00, iar apăsarea space înainte de 8 minute și 20 secunde se consideră refuz RP.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Refuzul de roleplay se sancționează cu 90 minute / 120 minute / 150 minute + warn la primele abateri, urmat de ban 3 zile pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">TROLLING:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>A face trolling înseamnă să faci acțiuni de tip Earrape, VDM masiv, Voice Change sau orice acțiune care afectează calitatea serverului și strică experiența de roleplay a celorlalți jucători.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Trolling-ul se sancționează cu ban 7 zile / 14 zile / 30 zile, urmat de ban permanent, în funcție de gravitate.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">FAKE COP:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Fake Cop apare atunci când îți asumi identitatea unui cadru legal fără a face parte din departamentul respectiv (poliție/medic) și încerci să faci acțiuni specifice acelui departament cu alți jucători (ex: furi o mașină de poliție și le spui altor jucători că ești polițist și trebuie să îți arate buletinele).</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Fake Cop se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">AFK IN ROLEPLAY:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>AFK in roleplay înseamnă să intri într-o acțiune roleplay cu cineva și să pleci de la PC sau să nu fii atent la joc cât să răspunzi la roleplay (ex: faci un accident și răspunzi la telefon, ignorând acțiunea roleplay).</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> AFK-ul în roleplay se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">DESCHIDERE OOC IN IC:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Deschiderea OOC în IC apare atunci când ești într-un roleplay cu cineva și începi să vorbești despre lucruri OOC (ex: te enervezi și spui că vei chema admin sau faci ticket).</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Deschiderea OOC în IC se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn + jail 120 minute pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">SUFERINȚE:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Este strict INTERZISĂ orice formă de suferință, fie verbală, scrisă sau fizică (ex: strângerea polițiștilor de la un jaf/bătaie și postarea pozelor pe camera IC/Discord, injosirea unei persoane ex: a pune să latre).</li>
+        <li>Se face diferența între suferință, glumă și scandal.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Suferințele se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn + jail 120 minute pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">LOW EFFORT ROLEPLAY (LER):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Low Effort RP apare atunci când nu depui un minim de interes pentru un roleplay. Este așteptat să depui efort în roleplay-ul tău indiferent de situație.</li>
+        <li>Exemple de LER:
+            <ul class="list-disc list-inside mt-1 ml-4 text-gray-300">
+                <li>Să împuști sau să fugi de poliție când situația nu o impune (ex: fuga de la un traffic stop unde ai primi doar amendă).</li>
+                <li>Nu poți jefui o persoană inconștientă fără a face parte din acțiunea roleplay.</li>
+                <li>Roleplay făcut fără chef sau în bătaie de joc.</li>
+                <li>Roleplay făcut în grabă pentru a termina o acțiune fără motiv bine întemeiat.</li>
+                <li>Apeluri făcute cu lipsă de interes către mecanici/bolt/SMURD/LSPD.</li>
+                <li>Folosirea unei animații sau fugirea după cineva în timp ce folosești aplicația de hacking.</li>
+                <li>LER se consideră și când mergi la un service auto sau la o spălătorie și îți repari/ștergi singur mașina cât timp sunt angajații disponibili.</li>
+            </ul>
+        </li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> LER se sancționează cu jail 90 minute / 120 minute / 150 minute + warn la primele abateri, urmat de ban 3 zile pentru fiecare abatere ulterioară.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">TOLERANȚĂ ZERO (ZT):</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>ZT – Toleranță Zero reprezintă disrespect, încălcarea mai multor reguli și comportament toxic.</li>
+        <li>Jucătorii care acumulează foarte multe sancțiuni într-o perioadă scurtă și au comportament toxic pot fi propuși la ban pentru ZT (ex: ban 14 zile fără drept de plată).</li>
+        <li>Se propun doar:
+            <ul class="list-disc list-inside mt-1 ml-4 text-gray-300">
+                <li>jucătorii cu foarte multe sancțiuni;</li>
+                <li>jucătorii cu multe sancțiuni într-un timp scurt (ex: o lună pe server și peste 10 sancțiuni);</li>
+                <li>jucătorii cu multiple banuri în trecut și care continuă să sfideze regulamentul.</li>
+            </ul>
+        </li>
+        <li>Mențiune: Ne rezervăm dreptul în anumite cazuri să aplicăm direct ban permanent.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> ZT se sancționează cu ban 7 zile / 14 zile / 30 zile, urmat de ban permanent, în funcție de gravitate.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">TICKET IN ROLEPLAY:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Ticket-ul în roleplay nu este acceptat decât atunci când se produce un fail.</li>
+        <li>Dacă se face ticket aiurea și nu a fost fail, persoanele care au făcut ticket-ul pot fi sancționate, dacă adminul sau persoanele implicate decid asta (roleplay-ul poate continua dacă adminul decide).</li>
+        <li>Dacă se face ticket într-un roleplay și se dau sancțiuni corecte, persoana care a făcut ticket nu va fi sancționată.</li>
+        <li>Observație: Dacă nu sunteți siguri că a fost un fail, se recomandă să faceți ticket la finalul roleplay-ului.</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Ticket-ul în roleplay se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8">
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">TICKET AIUREA:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Atunci când se face un ticket fără un motiv bine întemeiat, acesta se consideră "ticket aiurea".</li>
+        <li>Exemplu: La motivul ticket-ului pui "dqsdwqdoqkdokokq".</li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Ticket-ul aiurea se sancționează cu jail 60 minute / 90 minute / 120 minute la primele abateri, urmat de warn.
+    </span>
+</li>
+<hr class="border-t-2 border-white/30 my-8"> <!-- 80% opacitate -->
+<li class="flex items-start bg-blue-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-blue-500 text-opacity-60" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <text x="12" y="17" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">i</text>
+    </svg>
+    <span>
+        <strong class="text-lg text-white">FAIL RP:</strong>
+    </span>
+</li>
+<li class="flex items-start">
+    <ul class="list-disc list-inside mt-2 ml-4 text-base space-y-1 text-gray-300">
+        <li>Fail RP apare atunci când fortezi un roleplay imposibil sau neadecvat sau folosești limitări ale serverului pentru a influența roleplay-ul.</li>
+        <li>Exemple de Fail RP:
+            <ul class="list-disc list-inside mt-1 ml-4 text-gray-300">
+                <li>Arunci buletinul/permisul pe jos ca să dispară și cel în RP cu tine nu îl mai poate lua.</li>
+                <li>Intrarea cu un vehicul în spital.</li>
+                <li>Scrierea pe /me a unei acțiuni imposibile sau non-RP.</li>
+                <li>Cererea ca un jucător să arunce pe jos o armură sau alt obiect pentru a afla dacă face parte dintr-o facțiune.</li>
+                <li>Aterizarea elicopterului în locuri neamenajate fără motiv (cu excepții pentru urgențe și reguli speciale pe insula Cayo).</li>
+                <li>Folosirea elicopterului personal la jaf.</li>
+                <li>Abuzul de garajul personal din interiorul secției de poliție sau parcarea subterană de drift în roleplay.</li>
+                <li>Fuga abuzivă în safezone pentru a crea avantaj într-un roleplay.</li>
+                <li>Transportarea unei persoane lesinate la secția de poliție fără roleplay cu aceasta.</li>
+                <li>Transportarea unui polițist în carry la spital sau luarea acestuia ostatic (doar dacă sunt în viață).</li>
+            </ul>
+        </li>
+    </ul>
+</li>
+<li class="flex items-start mt-4 bg-red-800 bg-opacity-80 p-4 rounded-lg">
+    <svg class="flex-shrink-0 w-8 h-8 mr-4 text-red-500 text-opacity-60" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+    </svg>
+    <span>
+        <strong class="text-base text-white">Sancțiune:</strong> Fail RP se sancționează cu 90 minute / 120 minute / 150 minute + warn la primele abateri, urmat de ban 3 zile pentru fiecare abatere ulterioară.
+    </span>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </ul>
+        </div>
+
+    <!-- Regulament Server -->
+    <div id="regulament-server" class="regulament-section hidden bg-[var(--card)] p-6 rounded-lg shadow-xl border border-muted">
+      <h2 class="text-2xl font-bold mb-4 text-gray-200">Regulament Server</h2>
+      <ul class="list-disc list-inside space-y-3 text-lg text-gray-300">
+        <li>Respectă toți jucătorii și staff-ul.</li>
+        <li>Nu folosi hack-uri, bug-uri sau glitch-uri.</li>
+        <li>Nu face reclamă altor servere sau comunități.</li>
+        <li>Respectă sancțiunile aplicate de staff.</li>
+      </ul>
+    </div>
+
+    <!-- Regulament Facțiuni -->
+    <div id="regulament-factiuni" class="regulament-section hidden bg-[var(--card)] p-6 rounded-lg shadow-xl border border-muted">
+      <h2 class="text-2xl font-bold mb-4 text-gray-200">Regulament Facțiuni</h2>
+      <ul class="list-disc list-inside space-y-3 text-lg text-gray-300">
+        <li>Fiecare facțiune trebuie să respecte ierarhia internă.</li>
+        <li>Conflictele între facțiuni se rezolvă doar prin roleplay.</li>
+        <li>Este interzis să părăsești facțiunea fără un motiv roleplay valid.</li>
+        <li>Leaderii răspund de comportamentul membrilor lor.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  function showRegulament(type) {
+    document.querySelectorAll('.regulament-section').forEach(sec => sec.classList.add('hidden'));
+    document.getElementById('regulament-' + type).classList.remove('hidden');
+  }
+</script>       
+
+        <section id="contact" class="main-section text-center p-16">
+            <h2 class="text-4xl md:text-6xl font-black uppercase text-gray-100 text-glow tracking-wider">Contact</h2>
+            <p class="text-gray-300 text-xl mt-4">Ne poți contacta oricând pe Discord la <strong class="text-gray-100">@BENZINA®</strong> pentru orice întrebare sau asistență.</p>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 border-t border-muted">
+        <p class="text-gray-500">© Myd Romania 2023 — Aducem jocul la următorul nivel</p>
+    </footer>
+
+    <script>
+        const packages = [
+            { coins: 50, euro: 5 },
+            { coins: 110, euro: 10 },
+            { coins: 240, euro: 20 },
+            { coins: 510, euro: 50, popular: true },
+            { coins: 1070, euro: 100 },
+            { coins: 3960, euro: 200 },
+            { coins: 7000, euro: 300 }
+        ];
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.main-section').forEach(section => { section.classList.remove('active-section'); });
+            const sec = document.getElementById(sectionId);
+            if(sec) sec.classList.add('active-section');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) link.classList.add('active');
+            });
+
+            if (sectionId === 'cumpara-coins' && typeof createBonusChart === 'function') {
+                createBonusChart();
+            }
+        }
+
+        function populatePricing() {
+            const pricingGrid = document.getElementById('pricing-grid');
+            if (!pricingGrid) return;
+            pricingGrid.innerHTML = '';
+            packages.forEach(pkg => {
+                const card = document.createElement('div');
+                card.className = `product-card p-6 rounded-lg text-center border border-muted flex flex-col transition-transform duration-300 hover:scale-105 hover:border-gray-400 relative ${pkg.popular ? 'card-popular' : ''}`;
+
+                if (pkg.popular) {
+                    const popularBadge = document.createElement('div');
+                    popularBadge.className = 'badge-popular absolute top-0 right-0 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg';
+                    popularBadge.textContent = 'POPULAR';
+                    card.appendChild(popularBadge);
+                }
+
+                card.innerHTML += `
+                    <div class="flex-grow">
+                        <h3 class="text-2xl font-bold text-gray-200">${pkg.coins.toLocaleString('ro-RO')}</h3>
+                        <p class="text-gray-400 mb-4">COINS</p>
+                    </div>
+                    <div>
+                        <div class="bg-[var(--btn)] text-white text-3xl font-black py-3 px-6 rounded-md">
+                            ${pkg.euro}€
+                        </div>
+                    </div>
+                `;
+                pricingGrid.appendChild(card);
+            });
+        }
+        
+        function createBonusChart() {
+            const ctx = document.getElementById('bonusCoinsChart');
+            if (!ctx) return;
+            const baseRate = packages[0].coins / packages[0].euro; 
+            const labels = packages.map(p => `${p.euro}€`);
+            const bonusData = packages.map(p => {
+                const baseCoins = p.euro * baseRate;
+                const bonus = p.coins - baseCoins;
+                return bonus > 0 ? bonus : 0;
+            });
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Coins Bonus',
+                        data: bonusData,
+                        backgroundColor: 'rgba(86,88,105,0.7)',
+                        borderColor: 'rgba(86,88,105,1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context){ let label = context.dataset.label || ''; if(label) label += ': '; if(context.parsed.y !== null) label += `+${context.parsed.y.toLocaleString('ro-RO')} Coins`; return label; } } } },
+                    scales: { y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: 'var(--muted)' } }, x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: 'var(--muted)' } } }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => { populatePricing(); showSection('acasa'); });
+    </script>
+
+</body>
+</html>
